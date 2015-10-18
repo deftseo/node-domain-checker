@@ -2,7 +2,7 @@ var fs = require('fs'),
     url = require('url'),
     request = require('request');
 
-var DOMAIN_FILE = 'domain_list_2.txt',
+var DOMAIN_FILE = 'domain_list.txt',
     DOMAIN_LIST = fs.readFileSync(DOMAIN_FILE, 'utf-8').split('\n'),
     CHECKER_FORM = 'http://99webtools.com/page-authority-domain-authority-checker.php',
     CHECKER_URL  = 'http://99webtools.com/inc/pada.php',
