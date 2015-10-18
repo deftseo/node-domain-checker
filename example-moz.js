@@ -9,4 +9,6 @@ var DOMAIN_FILE = 'domain_list.txt',
 //     console.log(chunk);
 // });
 
-reader.pipe(mozChecker);
+reader
+    .pipe(mozChecker)
+    .pipe(process.stdout);
