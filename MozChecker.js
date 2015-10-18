@@ -48,7 +48,7 @@ MozChecker.prototype._write = function (chunk, encoding, callback) {
 
 
 MozChecker.prototype._read = function (size) {
-    console.log('MozChecker._read');
+    // console.log('MozChecker._read');
     return false;
 };
 
@@ -125,12 +125,14 @@ MozChecker.prototype.bufferResults = function (results) {
     var self = this;
     results.forEach(function (row) {
         var domain = {
-            domain: row['uu'].substring(-1),
+            domain: row['uu'].substring(0, row['uu'].length-1),
             MozDA: row['pda'].toFixed(2),
             MozPA: row['upa'].toFixed(2)
         };
 
-        self.buffer.push(domain);
+        self.push(
+            [domain.domain, domain.MozDA, domain.MozPA].join(',') + '\n'
+        );
     });
 };
 
