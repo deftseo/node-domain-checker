@@ -121,17 +121,20 @@ MozChecker.prototype.printResults = function (results) {
 };
 
 
-MozChecker.prototype.bufferResults = function (results) {
+MozChecker.prototype.bufferResults = function (results, domainList) {
     var self = this;
-    results.forEach(function (row) {
-        var domain = {
-            domain: row['uu'].substring(0, row['uu'].length-1),
-            MozDA: row['pda'].toFixed(2),
-            MozPA: row['upa'].toFixed(2)
-        };
+    results.forEach(function (row, index) {
+        var domainName = (row['uu'])
+                ? row['uu'].substring(0, row['uu'].length-1)
+                : domainList[index],
+            domain = {
+                domain: domainName,
+                MozDA: row['pda'].toFixed(2),
+                MozPA: row['upa'].toFixed(2)
+            };
 
         self.push(
-            [domain.domain, domain.MozDA, domain.MozPA].join(',') + '\n'
+            [domain.domain, domain.MozDA, domain.MozPA].join('\t') + '\n'
         );
     });
 };
@@ -186,7 +189,7 @@ MozChecker.prototype.doRequest = function (domainList, retry) {
                 results = JSON.parse(body);
 
                 if (results instanceof Array) {
-                    self.bufferResults(results);
+                    self.bufferResults(results, domainList);
                     // self.printResults(results);
 
                     setTimeout(function () {
