@@ -113,7 +113,7 @@ MozChecker.prototype.getNextBatch = function () {
 MozChecker.prototype.printResults = function (results) {
     results.forEach(function (row) {
         console.log(
-            row['uu'].substring(-1), "\t",
+            row['uu'].substring(0, row['uu'].length-1), "\t",
             row['pda'].toFixed(2), " \t",
             row['upa'].toFixed(2), " \t"
         );
