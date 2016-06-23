@@ -4,7 +4,7 @@ var url = require('url'),
 
 var CHECKER_FORM = 'http://99webtools.com/page-authority-domain-authority-checker.php',
     CHECKER_URL  = 'http://99webtools.com/inc/pada.php',
-    CHECKER_MAX  = 50,
+    CHECKER_MAX  = 10,
     PAUSE_BETWEEN_REQUESTS = 1000;
 
 
